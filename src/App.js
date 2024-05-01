@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [scr,setScr]=useState(0)
   let array=[];
   for(let i=1;i<31;i++){
     if(i<10){
@@ -12,36 +10,27 @@ function App() {
       array.push(i);
     }
   }
-  const amount=170;
+  const amount=170.4;
   function handleLeft(e){
     e.preventDefault();
-    if(scr>0){
-      let scroll=scr-amount;
-      if(scroll<0){
-        scroll=0;
-      }
-      setScr(scroll);
-      document.getElementById('box').scrollLeft=scroll;
-    }
+      document.getElementById('bigbox').scrollLeft-=amount;
   }
   function handleRight(e){
     e.preventDefault();
-    if(scr<6500){
-      let scroll=scr+amount;
-      setScr(scroll);
-      document.getElementById('box').scrollLeft=scroll;
-    }
+      document.getElementById('bigbox').scrollLeft+=amount;
   }
   return (
-    <>
-    <div className="bigbox" id="box">
-      {array.map((element)=><div className='b' id='b'><div className="box">{element}</div></div>)}
+    <div className='border'>
+      <div className='bigg'>
+    <div className="bigbox" id="bigbox">
+      {array.map((element)=><div><div className="box">{element}</div></div>)}
+    </div>
     </div>
     <div className='btns'>
       <button onClick={handleLeft}>Left</button>
       <button onClick={handleRight}>Right</button>
     </div>
-    </>
+    </div>
   );
 }
 
